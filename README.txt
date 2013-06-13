@@ -6,15 +6,18 @@ the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 http://www.gnu.org/licenses/
-
+-----------------------------------------------------------------
 Python Unterstützung für den Temperatur und Feuchtesensor AM2315
-Jörg Ehrsam 2013
+am i2c Bus des Raspberry PI
+-------------------------------------------------Jörg Ehrsam 2013
 
 Änderungshistorie:
+Siehe CHANGELOG.txt
 
-Version 1.0:
-Erste Version
-
+Voraussetzung:
+- python3
+- quickwire.i2c 
+(https://github.com/quick2wire/quick2wire-python-api.git)
 
 Installation:
 
