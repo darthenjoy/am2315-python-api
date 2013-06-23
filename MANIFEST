@@ -5,3 +5,4 @@ LICENCE.txt
 README.txt
 setup.py
 examples/gettemp.py
+examples/templog.sh
