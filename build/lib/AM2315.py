@@ -27,22 +27,30 @@ class AM2315(object):
                bus.transaction(i2c.writing_bytes(AM2315_I2CADDR, 
                    FUNCTION_CODE_READ,*readBytes )) 
                time.sleep(AM2315_WAITTIME)
-               read_results = bus.transaction(i2c.reading(AM2315_I2CADDR, 6))
+               read_results = bus.transaction(i2c.reading(AM2315_I2CADDR, 8))
+#               print(read_results)
                break
             except: 
                i = i+1 
           if i > MAXTRYS:
            print ("Sensor Read Error")
-           return ["err","err"]
+           return ["err1","err1"]
           else:
            s=bytearray(read_results[0])
            hum = (256*s[2]+s[3])/10
            temp = (256*s[4]+s[5])/10
-           if hum<0 or hum>100 or temp < -30 or temp > 70:
+           crc = 256*s[7]+s[6]
+           t=bytearray([s[2],s[3],s[4],s[5]])
+#           t=bytearray([s[1],s[2],s[3],s[4],s[5]])
+#           t=bytearray([s[0],s[1],s[2],s[3],s[4],s[5]])
+#           t=bytearray([s[5],s[4],s[3],s[2],s[1],s[0]])
+           c=self.crc16(t) 
+#           print(s,t,c)
+           if hum<=0 or hum>100 or temp < -30 or temp > 70:
                 err=1
-                hum="err"
-                temp="err"
-           return hum,temp
+                hum="err2"
+                temp="err2"
+           return hum,temp,crc,c
 
     def humidity(self): 
         x=self.values()
@@ -77,11 +85,25 @@ class AM2315(object):
         v=math.log10(self.DD(mode)/6.1078)
         return (self.b(mode)*v)/(self.a(mode)-v)
     def RR(self,mode):
-        T = self.temperature()
+        T = self.temper,lature()
         return 100*self.SDD(self.TD(T),mode) / self.SDD(T,mode)
     def AFr(self,mode):
         T = self.temperature()
         return math.pow(10,5)*MW_CONST/R_CONST*self.DD(mode)/self.TK(T)
     def TK(self,T):
         return T+273.15
-
+    def crc16(self, char):
+         crc = 0xFFFF
+#         print (bin(crc))
+         for l in char:
+               crc = crc ^ l
+#               print (bin(crc),bin(l))
+               for i in range(0,7):
+                   if (crc & 0x01):
+                      crc = crc >> 1
+                      crc = crc ^ 0xA001
+#                      print (bin(crc))
+                   else:
+                      crc = crc >> 1
+#                      print (bin(crc))
+         return crc 

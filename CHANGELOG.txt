@@ -4,4 +4,7 @@ Change Log
 1.0.0
 ------
 - first version
+1.0.1
+------
+- err code eingeführt
 

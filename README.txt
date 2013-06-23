@@ -21,7 +21,7 @@ Voraussetzung:
 
 Installation:
 
-#tar -xvzf AM.tar.gz
+#tar -xvzf AM2315-x.y.tar.gz
 #cd AM2315
 #python3 setup.py install 
 
@@ -29,7 +29,7 @@ Example:
 #python3
 >>> import AM2315
 >>> sensor=AM2315()
->>> sensor.temp()
+>>> sensor.temperature()
 24.5
->>> sensor.hum
+>>> sensor.humidity()
 65.3
