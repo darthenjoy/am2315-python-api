@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='AM2315',
-      version='1.0',
+      version='1.0.1',
       description='AM2315 Support',
       author='Jörg Ehrsam',
       url='http://res.ehrsam.de/',
