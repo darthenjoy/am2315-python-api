@@ -18,11 +18,10 @@ class AM2315(object):
         pass
     def __del__(self): 
         pass
-
     def values(self): 
-          bus=i2c.I2CMaster() 
           i=0
           while i <= MAXTRYS:
+           with i2c.I2CMaster() as bus: 
             try:
                bus.transaction(i2c.writing_bytes(AM2315_I2CADDR, 
                    FUNCTION_CODE_READ,*readBytes )) 

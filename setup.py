@@ -5,7 +5,7 @@ from distutils.core import setup
 setup(name='AM2315',
       version='1.0.1',
       description='AM2315 Support',
-      author='Jörg Ehrsam',
+      author='Joerg Ehrsam',
       url='http://res.ehrsam.de/',
       author_email='joerg@ehrsam.de',
       py_modules=['AM2315']
