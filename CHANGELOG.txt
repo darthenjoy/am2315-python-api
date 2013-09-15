@@ -3,7 +3,11 @@ Change Log
 
 1.3.0
 ------
+<<<<<<< HEAD
 - CRC-Codecalculation works now
+=======
+- crc calculation implemeted
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
 
 1.1.0
 ------

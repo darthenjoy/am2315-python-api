@@ -7,7 +7,7 @@ setup(name='AM2315',
       description='AM2315 Support',
       author='Joerg Ehrsam',
       url='http://res.ehrsam.de/',
-      author_email='joerg@ehrsam.de',
+      author_email='joerg.ehrsam@gmail.de',
       py_modules=['AM2315']
      )
 

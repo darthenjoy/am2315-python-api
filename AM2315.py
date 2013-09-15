@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import quick2wire.i2c as i2c
-import array 
+import array
 import sys
 import time
-import math 
+import math
 
 R_CONST=8314.3
 MW_CONST=18.016
@@ -12,11 +12,17 @@ AM2315_WAITTIME = 0.150
 MAXTRYS=3
 FUNCTION_CODE_READ = 0x03
 readBytes = array.array ("B",[0x00,0x04])
+<<<<<<< HEAD
 class AM2315(object): 
     def __init__(self): 
+=======
+class AM2315(object):
+    def __init__(self):
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
         pass
-    def __del__(self): 
+    def __del__(self):
         pass
+<<<<<<< HEAD
     def values(self): 
         i=0
         errcode=0 
@@ -24,33 +30,56 @@ class AM2315(object):
         temp = 999
         while i <= MAXTRYS:
           with i2c.I2CMaster() as bus: 
+=======
+    def values(self):
+        i=0
+        errcode=0
+        hum = 999
+        temp = 999
+        while i <= MAXTRYS:
+          with i2c.I2CMaster() as bus:
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
             try:
-               bus.transaction(i2c.writing_bytes(AM2315_I2CADDR, 
-                   FUNCTION_CODE_READ,*readBytes )) 
+               bus.transaction(i2c.writing_bytes(AM2315_I2CADDR,
+                   FUNCTION_CODE_READ,*readBytes ))
                time.sleep(AM2315_WAITTIME)
                read_results = bus.transaction(i2c.reading(AM2315_I2CADDR, 8))
 #               print(read_results)
                break
+<<<<<<< HEAD
             except: 
                i = i+1 
+=======
+            except:
+               i = i+1
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
         if i > MAXTRYS:
            errcode=1
         else:
            s=bytearray(read_results[0])
            crc = 256*s[7]+s[6]
            t = bytearray([s[0],s[1],s[2],s[3],s[4],s[5]])
+<<<<<<< HEAD
            c = self.crc16(t) 
+=======
+           c = self.crc16(t)
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
            if crc != c:
              errcode=2
            else:
              hum = (256*s[2]+s[3])/10
              temp = (256*s[4]+s[5])/10
+<<<<<<< HEAD
         return hum,temp,errcode   
     def humidity(self): 
+=======
+        return hum,temp,errcode
+    def humidity(self):
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
         x=self.values()
         return self.values()[0]
 
-    def temperature(self): 
+    def temperature(self):
         return self.values()[1]
 
     def SDD(self,T,mode):
@@ -96,4 +125,9 @@ class AM2315(object):
                       crc = crc ^ 0xA001
                    else:
                       crc = crc >> 1
+<<<<<<< HEAD
          return crc 
+=======
+         return crc
+
+>>>>>>> 3230c415d422a5ac45564e6e2a7fc8194b5c3b45
